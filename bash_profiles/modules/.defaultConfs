@@ -9,11 +9,10 @@ function pullConfs() {
 }
 
 function pushConfs() {
-    echo "$1"
     cd $confs
     git add .
-    # git commit -m "$1"
-    # git push
+    git commit -m "$1"
+    git push
     cd -
     sbp
 }
