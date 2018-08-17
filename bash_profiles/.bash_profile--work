@@ -1,9 +1,8 @@
 # help me: import this file in local bash_profile and
-# define the $bash_profiles variable
-
-#runs this after changing the profile to reflect changes instead of closing out and opening again. This is known as 'sourcing' the bash profile.
-alias sbp='. ~/.bash_profile' 
+# define the $confs variable
 
 # imports
-. $bash_profiles/modules/.aliases
-. $bash_profiles/modules/.git_branch
+. $confs/bash_profiles/modules/.defaultConfs
+. $confs/bash_profiles/modules/.defaultWork
+. $confs/bash_profiles/modules/.aliases
+. $confs/bash_profiles/modules/.git_branch
