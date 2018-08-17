@@ -8,7 +8,6 @@ function pullConfs() {
 }
 
 function pushConfs() {
-    $1
     cd $confs
     git add .
     git commit -m $1
