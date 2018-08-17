@@ -4,14 +4,16 @@ alias sbp='. ~/.bash_profile'
 function pullConfs() {
     cd $confs 
     git pull
+    cd -
     sbp
 }
 
 function pushConfs() {
+    echo "$1"
     cd $confs
     git add .
-    git commit -m $1
-    git push
-    cd ~
+    # git commit -m "$1"
+    # git push
+    cd -
     sbp
 }
