@@ -5,7 +5,6 @@
 # . $confs/bash_profiles/bash_profile_creator.sh "HOME" $OVERRIDE
 
 
-PROFILE="DEFAULT"
 import=$confs/bash_profiles/modules
 
 # defualt configs
@@ -24,14 +23,16 @@ fi
 
 # profile specific comps
 if [ $PROFILE = "WORK" ]; then
-    echo "$PROFILE PROFILE LOADED"
     # import work specific bash files here
+    profileName
     . $import/defaultWork.sh
 fi
 
 if [ $PROFILE = "HOME" ]; then
-    echo "$PROFILE PROFILE LOADED"
     # import home specific bash files here
+    profileName
 fi
 
-
+function profileName() {
+    echo "$PROFILE PROFILE LOADED"
+}
