@@ -1,7 +1,0 @@
-# help me: import this file in local bash_profile and
-# define the $confs variable
-
-# imports
-. $confs/bash_profiles/modules/.defaultConfs
-. $confs/bash_profiles/modules/.aliases
-. $confs/bash_profiles/modules/.git_branch
