@@ -24,12 +24,13 @@ fi
 # profile specific comps
 if [ $PROFILE = "WORK" ]; then
     # import work specific bash files here
-    profileName
     . $importBashModules/defaultWork.sh
+    profileName
 fi
 
 if [ $PROFILE = "HOME" ]; then
     # import home specific bash files here
+    . $importBashModules/defaultHome.sh
     profileName
 fi
 
