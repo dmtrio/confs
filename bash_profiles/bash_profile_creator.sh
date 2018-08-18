@@ -5,13 +5,13 @@
 # . $confs/bash_profiles/bash_profile_creator.sh "HOME" $OVERRIDE
 
 
-import=$confs/bash_profiles/modules
+importBashModules=$confs/bash_profiles/modules
 
 # defualt configs
-. $import/defaultConfs.sh
-. $import/helperFunctions.sh
-. $import/aliases.sh
-. $import/git_branch.sh
+. $importBashModules/defaultConfs.sh
+. $importBashModules/helperFunctions.sh
+. $importBashModules/aliases.sh
+. $importBashModules/git_branch.sh
 
 
 # Set the PROFILE to OVERRIDE or first var
@@ -25,7 +25,7 @@ fi
 if [ $PROFILE = "WORK" ]; then
     # import work specific bash files here
     profileName
-    . $import/defaultWork.sh
+    . $importBashModules/defaultWork.sh
 fi
 
 if [ $PROFILE = "HOME" ]; then

@@ -20,9 +20,3 @@ function pushConfs() {
     cd -
     sbp $PROFILE
 }
-
-function testing() {
-    cd $confs
-    cd -
-    sbp $PROFILE
-}
