@@ -12,6 +12,7 @@ importBashModules=$confs/bash_profiles/modules
 . $importBashModules/helperFunctions.sh
 . $importBashModules/aliases.sh
 . $importBashModules/git_branch.sh
+. $importBashModules/git_funcs.sh
 
 
 # Set the PROFILE to OVERRIDE or first var

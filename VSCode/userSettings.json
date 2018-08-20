@@ -1,0 +1,32 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "sublimeTextKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "files.eol": "\n",
+    "files.encoding": "utf8",
+    "[java]": {
+        "editor.tabSize": 4
+    },
+    "files.associations": {
+        "*.mustache": "html"
+    },
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.historyExplorer.enabled": true,
+    "workbench.tree.horizontalScrolling": true,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "gitlens.resultsExplorer.location": "scm",
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.statusBar.enabled": false,
+    "gitlens.resultsExplorer.files.layout": "auto",
+    "powermode.enabled": false,
+    "powermode.presets": "exploding-rift",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.zoomLevel": 0,
+    
+}
