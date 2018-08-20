@@ -8,19 +8,23 @@
 importBashModules=$confs/bash_profiles/modules
 
 # defualt configs
-. $importBashModules/defaultConfs.sh
 . $importBashModules/helperFunctions.sh
+. $importBashModules/defaultConfs.sh
 . $importBashModules/aliases.sh
 . $importBashModules/git_branch.sh
-. $importBashModules/git_funcs.sh
+. $importBashModules/extend_git.sh
 
 
 # Set the PROFILE to OVERRIDE or first var
-if [ ! -z "$2" ]; then
+if verifyParamExists "$2"; then
     PROFILE=$(toUpperCase $2)
-elif [ ! -z "$1" ]; then
+elif verifyParamExists "$1"; then
     PROFILE=$(toUpperCase $1)
 fi
+
+function profileName() {
+    echo "$PROFILE PROFILE LOADED"
+}
 
 # profile specific comps
 if [ $PROFILE = "WORK" ]; then
@@ -34,7 +38,3 @@ if [ $PROFILE = "HOME" ]; then
     . $importBashModules/defaultHome.sh
     profileName
 fi
-
-function profileName() {
-    echo "$PROFILE PROFILE LOADED"
-}
