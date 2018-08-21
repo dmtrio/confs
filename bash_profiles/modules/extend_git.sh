@@ -6,7 +6,7 @@ function cgit () {
   for PARAM in "${@}"
   do
     case "$PARAM" in
-      --branch)
+      --cbranch|-cb)
         PARAM="$BRANCH"
         ;;
     esac
@@ -17,7 +17,7 @@ function cgit () {
   case "$1" in
     pull)
       case "$2" in
-        --overwrite)
+        --overwrite|-ow)
           gitPullOverwrite $3
           ;; 
         *) 
@@ -39,7 +39,7 @@ function cgit () {
         git reset $REMOTE/$BRANCH --hard
       fi
     else
-      echo "specify remote to use"
+      echo "usage: git pull [<options>] [<repository>]"
     fi
   }
 
