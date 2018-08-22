@@ -7,7 +7,7 @@ function sbp() {
 
 function pullConfs() {
     cd $confs 
-    git pull
+    git pull --rebase
     cd -
     sbp $PROFILE
 }

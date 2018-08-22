@@ -39,7 +39,7 @@ function cgit () {
         git reset $REMOTE/$BRANCH --hard
       fi
     else
-      echo "usage: git pull [<options>] [<repository>]"
+      echo "usage: cgit pull [<options>] [<repository>]"
     fi
   }
 

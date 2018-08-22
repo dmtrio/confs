@@ -15,6 +15,18 @@ function verifyParamExists() {
   fi
 }
 
+function verifyParamEmpty() {
+    return ! $(verifyParamExists $1)
+}
+
+testEmpty() {
+    if [ "verifyParamEmpty" "$1" ]; then
+    echo "yay"
+  else 
+    echo "nay"
+  fi
+}
+
 function confirm() {
     # call with a prompt string or use a default
     read -r -p "${1:-Are you sure?} [y/N]" response
