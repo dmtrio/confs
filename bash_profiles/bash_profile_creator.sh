@@ -9,7 +9,7 @@ importBashModules=$confs/bash_profiles/modules
 
 # defualt configs
 . $importBashModules/helper_func.sh
-. $importBashModules/defaults.sh
+. $importBashModules/default.sh
 . $importBashModules/aliases.sh
 . $importBashModules/git_branch.sh
 . $importBashModules/extend_git.sh
@@ -22,19 +22,22 @@ elif verifyParamExists "$1"; then
     PROFILE=$(toUpperCase $1)
 fi
 
-function profileName() {
+function printProfileName() {
     echo "$PROFILE PROFILE LOADED"
 }
 
 # profile specific comps
-if [ $PROFILE = "WORK" ]; then
-    # import work specific bash files here
-    . $importBashModules/default_work.sh
-    profileName
-fi
+case "$PROFILE" in
+    HOME)
+        . $importBashModules/default_home.sh
+        ;;
+    WORK)
+        . $importBashModules/default_work.sh
+        ;; 
+    *) 
+        PROFILE="NO"
+        ;;
+esac 
 
-if [ $PROFILE = "HOME" ]; then
-    # import home specific bash files here
-    . $importBashModules/default_home.sh
-    profileName
-fi
+printProfileName
+
