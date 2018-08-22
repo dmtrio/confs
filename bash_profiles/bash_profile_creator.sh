@@ -8,8 +8,8 @@
 importBashModules=$confs/bash_profiles/modules
 
 # defualt configs
-. $importBashModules/helperFunctions.sh
-. $importBashModules/defaultConfs.sh
+. $importBashModules/helper_func.sh
+. $importBashModules/defaults.sh
 . $importBashModules/aliases.sh
 . $importBashModules/git_branch.sh
 . $importBashModules/extend_git.sh
@@ -29,12 +29,12 @@ function profileName() {
 # profile specific comps
 if [ $PROFILE = "WORK" ]; then
     # import work specific bash files here
-    . $importBashModules/defaultWork.sh
+    . $importBashModules/default_work.sh
     profileName
 fi
 
 if [ $PROFILE = "HOME" ]; then
     # import home specific bash files here
-    . $importBashModules/defaultHome.sh
+    . $importBashModules/default_home.sh
     profileName
 fi
