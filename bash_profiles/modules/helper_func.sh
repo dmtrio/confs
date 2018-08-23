@@ -15,12 +15,12 @@ function verifyParamExists() {
   fi
 }
 
-function verifyParamEmpty() {
-    return ! $(verifyParamExists $1)
+function verifyParamEmpty {
+    echo ! $(verifyParamExists $1)
 }
 
-testEmpty() {
-    if [ "verifyParamEmpty" "$1" ]; then
+function testEmpty {
+  if "verifyParamEmpty" "$1"; then
     echo "yay"
   else 
     echo "nay"
@@ -29,8 +29,8 @@ testEmpty() {
 
 function confirm() {
     # call with a prompt string or use a default
-    read -r -p "${1:-Are you sure?} [y/N]" response
-    case "$response" in
+    read -r -p "${1:-Are you sure?} [y/N]" RESPONSE
+    case "$RESPONSE" in
         [yY][eE][sS]|[yY]) 
             true
             ;;
@@ -38,4 +38,15 @@ function confirm() {
             false
             ;;
     esac
+}
+
+function options() {
+    # call options to be displayed
+    read -r -p "Select an option < ${*} > :" RESPONSE
+    for OPTION in "${@}"
+    do
+      if [ "$OPTION" = "$RESPONSE" ]; then
+        echo "$OPTION"
+      fi
+    done
 }
