@@ -8,4 +8,4 @@ alias ngs='sudo brew services stop nginx'
 alias ngconf='code /usr/local/etc/nginx/nginx.conf'
 
 # git
-alias repo=$(basename `git rev-parse --show-toplevel`)
+# alias repo=$(basename `git rev-parse --show-toplevel`)
