@@ -15,16 +15,12 @@ function verifyParamExists() {
   fi
 }
 
-function verifyParamEmpty {
-    echo ! $(verifyParamExists $1)
-}
-
-function testEmpty {
-  if "verifyParamEmpty" "$1"; then
-    echo "yay"
-  else 
-    echo "nay"
-  fi
+function verifyParamEmpty() {
+    if verifyParamExists $1; then
+      false
+    else
+      true
+    fi
 }
 
 function confirm() {
