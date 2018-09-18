@@ -1,5 +1,5 @@
 # GLOBALS - Preserved though multiple excecutions
-local SBRANCH
+SBRANCH=""
 
 function cgit () {
 
@@ -9,59 +9,6 @@ function cgit () {
   local CBRANCH=$(git rev-parse --abbrev-ref HEAD)
   local BRANCHES=$(git for-each-ref --format="%(refname:short)" refs/heads/)
 
-  local NPA=()
-  # START: Param expansion/replacement 
-  for PARAM in "${@}"
-  do
-    case "$PARAM" in
-      --cbranch|-cb)
-        PARAM="$CBRANCH"
-      ;;
-      # extended globing matching
-      --sbranch*([0-9])|-sb*([0-9]))
-        local SELECTED=${PARAM//[!0-9]/}
-        if verifyParamExists ${SELECTED}; then
-          gitBranchSelect ${SELECTED}
-        fi
-        PARAM=$SBRANCH
-      ;;
-    esac
-    NPA+=("$PARAM")
-  done
-  # END: Param expansion/replacement
-
-
-  case "$1" in
-    ammend)
-      git commit -a --amend -C HEAD
-    ;;
-    pull)
-      case "$2" in
-        --overwrite|-ow)
-          gitPullOverwrite $3
-        ;;
-        pr)
-          gitPullPullRequestBranch $3 $2
-        ;; 
-        *) 
-          git "${NPA[@]}"
-        ;;
-      esac
-    ;;
-    branch)
-      if verifyParamEmpty $2; then
-        gitBranchSelect
-      else
-        git "${NPA[@]}"
-      fi
-    ;;
-    testing)
-      echo "$SBRANCH"
-    ;;
-    *) 
-      git "${NPA[@]}"
-    ;;
-  esac
 
   function availableBranchesLoop() {
     local NUMB=1
@@ -112,5 +59,60 @@ function cgit () {
     fi
     availableBranchesLoop $1
   }
+
+
+  local NPA=()
+  # START: Param expansion/replacement 
+  for PARAM in "${@}"
+  do
+    case "$PARAM" in
+      --cbranch|-cb)
+        PARAM="$CBRANCH"
+      ;;
+      # extended globing matching
+      --sbranch*([0-9])|-sb*([0-9]))
+        local SEL=${PARAM//[!0-9]/}
+        if verifyParamExists ${SEL}; then
+          gitBranchSelect ${SEL}
+        fi
+        PARAM=$SBRANCH
+      ;;
+    esac
+    NPA+=("$PARAM")
+  done
+  # END: Param expansion/replacement
+
+
+  case "$1" in
+    ammend)
+      git commit -a --amend -C HEAD
+    ;;
+    pull)
+      case "$2" in
+        --overwrite|-ow)
+          gitPullOverwrite $3
+        ;;
+        pr)
+          gitPullPullRequestBranch $3 $2
+        ;; 
+        *) 
+          git "${NPA[@]}"
+        ;;
+      esac
+    ;;
+    branch)
+      if verifyParamEmpty $2; then
+        gitBranchSelect
+      else
+        git "${NPA[@]}"
+      fi
+    ;;
+    # testing)
+    #   echo "$SBRANCH"
+    # ;;
+    *) 
+      git "${NPA[@]}"
+    ;;
+  esac
 
 }
