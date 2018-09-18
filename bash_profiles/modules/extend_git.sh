@@ -1,44 +1,40 @@
+# GLOBALS - Preserved though multiple excecutions
+local SBRANCH
+
 function cgit () {
 
   # plumbing commands - Low level git commands to build more commands
   # https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git.html#_low_level_commands_plumbing
 
-  # Colors
-  local Black="\033[0,30m"     
-  local DGray="\033[1;30m"
-  local Red="\033[0;31m" 
-  local LRed="\033[1;31m"
-  local Green="\033[0;32m"     
-  local LGreen="\033[1;32m"
-  local Brown="\033[0;33m"     
-  local Yellow="\033[1;33m"
-  local Blue="\033[0;34m"     
-  local LBlue="\033[1;34m"
-  local Purple="\033[0;35m"     
-  local LPurple="\033[1;35m"
-  local Cyan="\033[0;36m"     
-  local LCyan="\033[1;36m"
-  local LGray="\033[ 0;37m"     
-  local White="\033[1;37m"
-  local NC="\033[0m"
-
   local CBRANCH=$(git rev-parse --abbrev-ref HEAD)
   local BRANCHES=$(git for-each-ref --format="%(refname:short)" refs/heads/)
 
   local NPA=()
-  # Param expansion/replacement
+  # START: Param expansion/replacement 
   for PARAM in "${@}"
   do
     case "$PARAM" in
       --cbranch|-cb)
         PARAM="$CBRANCH"
-        ;;
+      ;;
+      # extended globing matching
+      --sbranch*([0-9])|-sb*([0-9]))
+        local SELECTED=${PARAM//[!0-9]/}
+        if verifyParamExists ${SELECTED}; then
+          gitBranchSelect ${SELECTED}
+        fi
+        PARAM=$SBRANCH
+      ;;
     esac
     NPA+=("$PARAM")
   done
+  # END: Param expansion/replacement
 
 
   case "$1" in
+    ammend)
+      git commit -a --amend -C HEAD
+    ;;
     pull)
       case "$2" in
         --overwrite|-ow)
@@ -52,11 +48,15 @@ function cgit () {
         ;;
       esac
     ;;
-    branch) 
-      gitBranchSelect $2
+    branch)
+      if verifyParamEmpty $2; then
+        gitBranchSelect
+      else
+        git "${NPA[@]}"
+      fi
     ;;
     testing)
-      availableBranchesLoop $2
+      echo "$SBRANCH"
     ;;
     *) 
       git "${NPA[@]}"
@@ -69,7 +69,8 @@ function cgit () {
       if [ $CBRANCH != $BRANCH ]; then
           if verifyParamExists $1; then
             if [[ "$NUMB" -eq "$1" ]]; then
-              printf "Selected: $BRANCH \n"
+              SBRANCH=$BRANCH
+              printf "Selected: ${Cyan}$BRANCH${NC} \n"
             fi
           else
           printf  "$NUMB ${Green}$BRANCH ${NC} \n"
@@ -107,7 +108,7 @@ function cgit () {
 
   function gitBranchSelect() {
     if verifyParamEmpty $1; then
-    printf "* ${Cyan}$CBRANCH ${NC} \n"
+      printf "* ${Cyan}$CBRANCH ${NC} \n"
     fi
     availableBranchesLoop $1
   }
