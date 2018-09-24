@@ -21,6 +21,11 @@ function pushConfs() {
     sbp $PROFILE
 }
 
+function google() {
+  echo "Googling.... looking for $@";
+  chrome "http://www.google.com/search?q=$*";
+}
+
 # Start extended glob matching
 shopt -s extglob
 
