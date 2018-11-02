@@ -41,5 +41,6 @@ case "$PROFILE" in
         ;;
 esac 
 
+updateOnStart
 printProfileName
 

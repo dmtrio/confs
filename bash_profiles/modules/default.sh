@@ -5,6 +5,12 @@ function sbp() {
     . ~/.bash_profile $1
 }
 
+function updateOnStart() {
+  cd $confs 
+  git pull --rebase
+  cd -
+}
+
 function pullConfs() {
     cd $confs 
     git pull --rebase
