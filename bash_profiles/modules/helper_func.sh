@@ -37,12 +37,35 @@ function confirm() {
 }
 
 function options() {
-    # call options to be displayed
-    read -r -p "Select an option < ${*} > :" RESPONSE
-    for OPTION in "${@}"
-    do
-      if [ "$OPTION" = "$RESPONSE" ]; then
-        echo "$OPTION"
-      fi
-    done
+  # call options to be displayed
+  read -r -p "Select an option < ${*} > :" RESPONSE
+  for OPTION in "${@}"
+  do
+    if [ "$OPTION" = "$RESPONSE" ]; then
+      echo "$OPTION"
+    fi
+  done
 }
+
+function selectNumber() {
+  echo {1.."$(($#))"}
+    # call options to be displayed
+  # read -r -p "Select an option < ${*} > :" RESPONSE
+  # for OPTION in "${@}"
+  # do
+
+  #   if [ "$OPTION" = "$RESPONSE" ]; then
+  #     echo "$OPTION"
+  #   fi
+  # done 
+}
+
+function detectDirectoryChange() {
+  if [ "$PWD" != "$MYOLDPWD" ]; then
+    MYOLDPWD="$PWD";
+    echo "new directory"
+    # strut yer stuff here..
+  fi
+}
+
+export PROMPT_COMMAND=detectDirectoryChange

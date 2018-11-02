@@ -8,7 +8,10 @@ alias ngs='sudo brew services stop nginx'
 alias ngconf='code /usr/local/etc/nginx/nginx.conf'
 
 # app shortcuts
-alias chrome="open -a 'Google Chrome'"
+function chrome() {
+  open -na "Google Chrome" --args "$1" $2
+}
+
 
 # git
 # alias repo=$(basename `git rev-parse --show-toplevel`)

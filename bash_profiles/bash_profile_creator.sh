@@ -13,6 +13,8 @@ importBashModules=$confs/bash_profiles/modules
 . $importBashModules/aliases.sh
 . $importBashModules/git_branch.sh
 . $importBashModules/extend_git.sh
+# needs to be at the end so all functions are loaded
+. $importBashModules/param_expansions.sh
 
 
 # Set the PROFILE to OVERRIDE or first var
