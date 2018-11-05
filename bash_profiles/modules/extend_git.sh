@@ -1,6 +1,4 @@
 # GLOBALS - Preserved though multiple excecutions
-SBRANCH=""
-# BRANCHES=""
 if [ -d .git ]; then
   CBRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi;
@@ -66,9 +64,6 @@ function cgit () {
         git "${NPA[@]}"
       fi
     ;;
-    # testing)
-    #   echo "$SBRANCH"
-    # ;;
     *) 
       git "${NPA[@]}"
     ;;

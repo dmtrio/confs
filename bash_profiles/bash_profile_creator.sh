@@ -43,4 +43,3 @@ esac
 
 updateOnStart
 printProfileName
-
