@@ -19,26 +19,26 @@ importBashModules=$confs/bash_profiles/modules
 
 # Set the PROFILE to OVERRIDE or first var
 if verifyParamExists "$2"; then
-    PROFILE=$(toUpperCase $2)
+  PROFILE=$(toUpperCase $2)
 elif verifyParamExists "$1"; then
-    PROFILE=$(toUpperCase $1)
+  PROFILE=$(toUpperCase $1)
 fi
 
 function printProfileName() {
-    echo "$PROFILE PROFILE LOADED"
+  echo "$PROFILE PROFILE LOADED"
 }
 
 # profile specific comps
 case "$PROFILE" in
-    HOME)
-        . $importBashModules/default_home.sh
-        ;;
-    WORK)
-        . $importBashModules/default_work.sh
-        ;; 
-    *) 
-        PROFILE="NO"
-        ;;
+  HOME)
+    . $importBashModules/default_home.sh
+    ;;
+  WORK)
+    . $importBashModules/default_work.sh
+    ;; 
+  *) 
+    PROFILE="NO"
+    ;;
 esac 
 
 updateOnStart
