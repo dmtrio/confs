@@ -45,9 +45,6 @@ function x() {
       cbranch|cb)
         PARAM="$(git rev-parse --abbrev-ref HEAD)"
       ;;
-      vbranch|vb)
-        PARAM="$(availableBranchesLoop)"
-      ;;
       # extended globing matching
       sbranch*([0-9])|sb*([0-9]))
         local SEL=${PARAM//[!0-9]/}
@@ -63,6 +60,11 @@ function x() {
     esac
     NPA+=" ${PARAM}"
   done
-  eval ${NPA}
+  echo ${NPA}
+  # eval ${NPA}
   # END: Param expansion/replacement
+}
+
+function xx() {
+  eval $(x ${@})
 }

@@ -7,6 +7,16 @@ function toLowerCase() {
     echo "$1" | tr '[:upper:]' '[:lower:]'
 } 
 
+function areMatches() {
+  local VAR1=$(toUpperCase "$1")
+  local VAR2=$(toUpperCase "$2")
+  if [ $VAR1 == $VAR2 ]; then
+    true
+  else
+    false
+  fi
+}
+
 function verifyParamExists() {
   if [ ! -z "$1" ]; then
     true
