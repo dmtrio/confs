@@ -12,6 +12,14 @@ function chrome() {
   open -na "Google Chrome" --args "$1" $2
 }
 
+function google() {
+  echo "Googling.... looking for $@";
+  chrome "http://www.google.com/search?q=$*";
+}
+
+# Add Visual Studio Code (code)
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
 # git
 # alias repo=$(basename `git rev-parse --show-toplevel`)
+

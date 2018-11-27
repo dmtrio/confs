@@ -7,6 +7,14 @@
 
 importBashModules=$confs/bash_profiles/modules
 
+# if ! areMatches $3 "RELOAD"; then
+#   cd $confs
+#   git stash
+#   git pull --rebase
+#   git stash pop
+#   cd -
+# fi
+
 # defualt configs
 . $importBashModules/helper_func.sh
 . $importBashModules/default.sh
@@ -39,7 +47,6 @@ case "$PROFILE" in
   *) 
     PROFILE="NO"
     ;;
-esac 
+esac
 
-updateOnStart
 printProfileName

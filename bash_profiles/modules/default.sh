@@ -1,16 +1,13 @@
 #runs this after changing the profile to reflect changes instead of closing out and opening again. This is known as 'sourcing' the bash profile.
+
 # alias sbp='. ~/.bash_profile'
 
+# $1 is the override
 function sbp() {
-  . ~/.bash_profile $1
-}
-
-function updateOnStart() {
-  cd $confs
-  git stash
-  git pull --rebase
-  git stash pop
-  cd -
+  if verifyParamExists $1; then
+    PROFILE=$1
+  fi
+  . ~/.bash_profile $PROFILE "RELOAD"
 }
 
 function pullConfs() {
@@ -29,14 +26,8 @@ function pushConfs() {
   # sbp $PROFILE
 }
 
-function google() {
-  echo "Googling.... looking for $@";
-  chrome "http://www.google.com/search?q=$*";
-}
-
 # Start extended glob matching
 shopt -s extglob
-
 
 # Colors for terminal
 # usage: printf  "Some text ${Green}Green text${NC} \n"
