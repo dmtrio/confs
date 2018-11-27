@@ -7,18 +7,18 @@
 
 importBashModules=$confs/bash_profiles/modules
 
-# if ! areMatches $3 "RELOAD"; then
-#   cd $confs
-#   git stash
-#   git pull --rebase
-#   git stash pop
-#   cd -
-# fi
+if ! areMatches $3 "RELOAD"; then
+  cd $confs
+  git stash
+  git pull --rebase
+  git stash pop
+  cd -
+fi
 
 # defualt configs
 . $importBashModules/helper_func.sh
 . $importBashModules/default.sh
-. $importBashModules/aliases.sh
+. $importBashModules/app_shortcuts.sh
 . $importBashModules/git_branch.sh
 . $importBashModules/extend_git.sh
 # needs to be at the end so all functions are loaded
