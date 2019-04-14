@@ -18,7 +18,7 @@ importBashModules=$confs/bash_profiles/modules
 # defualt configs
 . $importBashModules/helper_func.sh
 . $importBashModules/default.sh
-. $importBashModules/app_shortcuts.sh
+. $importBashModules/aliases.sh
 . $importBashModules/git_branch.sh
 . $importBashModules/extend_git.sh
 # needs to be at the end so all functions are loaded

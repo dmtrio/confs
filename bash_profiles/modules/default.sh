@@ -1,7 +1,5 @@
 #runs this after changing the profile to reflect changes instead of closing out and opening again. This is known as 'sourcing' the bash profile.
 
-# alias sbp='. ~/.bash_profile'
-
 # $1 is the override
 function sbp() {
   if verifyParamExists $1; then
@@ -25,6 +23,11 @@ function pushConfs() {
   cd -
   # sbp $PROFILE
 }
+
+# Path additions
+# Add Visual Studio Code (code)
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
 
 # Start extended glob matching
 shopt -s extglob
