@@ -34,6 +34,7 @@ fi
 
 function printProfileName() {
   echo "$PROFILE PROFILE LOADED"
+  echo "$PATH"
 }
 
 # profile specific comps

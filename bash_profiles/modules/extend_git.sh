@@ -13,18 +13,6 @@ function cgit () {
   local CBRANCH=$(git rev-parse --abbrev-ref HEAD)
   local BRANCHES=$(git for-each-ref --format="%(refname:short)" refs/heads/)
 
-  function gitPullOverwrite() {
-    local REMOTE=$1 
-    if verifyParamExists $1; then
-      if confirm "This OVERWRITES LOCAL COMMITS not in ${REMOTE}/${CBRANCH}. Is this ok?"; then
-        git fetch $REMOTE
-        git reset $REMOTE/$CBRANCH --hard
-      fi
-    else
-      echo "usage: cgit pull [<options>] [<repository>]"
-    fi
-  }
-
   # Normally it is git fetch $REMOTE pull/$ID/head:$BRANCHNAME
   function gitPullPullRequestBranch() {
     local REMOTE=upstream

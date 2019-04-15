@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+if [ -d .git ]; then
+  CBRANCH=$(git rev-parse --abbrev-ref HEAD)
+fi;
+
+function confirm() {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure?} [y/N]" RESPONSE
+    case "$RESPONSE" in
+        [yY][eE][sS]|[yY]) 
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
+
+# function gitPullOverwrite() {
+   REMOTE=$1 
+#   if verifyParamExists $1; then
+    if confirm "This OVERWRITES LOCAL COMMITS not in ${REMOTE}/${CBRANCH}. Is this ok?"; then
+      git fetch $REMOTE --quiet
+      git reset $REMOTE/$CBRANCH --hard
+    fi
+#   else
+    # echo "usage: cgit pull [<options>] [<repository>]"
+#   fi
+# }
+
+echo "this is a new command"

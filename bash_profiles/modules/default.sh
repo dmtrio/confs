@@ -28,6 +28,9 @@ function pushConfs() {
 # Add Visual Studio Code (code)
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
+# Adding git extensions path
+export PATH="$confs/git-extended/bin:$PATH"
+
 
 # Start extended glob matching
 shopt -s extglob
